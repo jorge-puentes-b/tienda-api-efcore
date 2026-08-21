@@ -1,4 +1,4 @@
-# 🛒 Tienda API - ASP.NET Core & EF Core con Asistente Virtual AI 🤖
+# Tienda API - ASP.NET Core & EF Core con Asistente Virtual AI 
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-12.0-239120?logo=csharp&logoColor=white)
@@ -11,7 +11,7 @@ API RESTful profesional construida con **ASP.NET Core Web API**, **Entity Framew
 
 ---
 
-## 🏛️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 El proyecto implementa una **arquitectura desacoplada en 3 capas** con estricto apego al principio de **Inversión de Dependencias (DIP)**:
 
@@ -36,7 +36,7 @@ El proyecto implementa una **arquitectura desacoplada en 3 capas** con estricto 
 
 ---
 
-## ✨ Características Principales
+## Características Principales
 
 - **Arquitectura Limpia:** Separación estricta entre Controladores, Interfaces, Servicios, Modelos y DTOs.
 - **Seguridad en Datos (DTOs):** Aislamiento de la base de datos mediante DTOs de entrada (`Crear...Dto`, `Actualizar...Dto`) y DTOs de salida (`...ResponseDto`).
@@ -51,11 +51,11 @@ El proyecto implementa una **arquitectura desacoplada en 3 capas** con estricto 
 
 ---
 
-## 🤖 Integración de IA & Métricas de Rendimiento (Groq Cloud)
+##  Integración de IA & Métricas de Rendimiento (Groq Cloud)
 
 El asistente inteligente utiliza la infraestructura de **Groq Cloud** para inferencia ultrarrápida en tiempo real con modelos LLM de última generación.
 
-### 📊 Métricas de Inferencia en Producción:
+### Métricas de Inferencia en Producción:
 
 #### 1. Consumo de Tokens (Input vs Output)
 El sistema optimiza el envío de tokens serializando únicamente los campos esenciales del catálogo:
@@ -71,14 +71,14 @@ Respuestas estables con tiempos de respuesta de milisegundos gracias a la arquit
 
 ---
 
-## 📋 Catálogo de Endpoints RESTful
+##  Catálogo de Endpoints RESTful
 
-### 🤖 Asistente Virtual AI
+### Asistente Virtual AI
 | Método | Endpoint | Descripción | Body JSON |
 | :--- | :--- | :--- | :--- |
 | **POST** | `/api/Chat` | Preguntar al asistente de compras en lenguaje natural | `{ "mensajeUsuario": "¿Qué laptop me recomiendas?" }` |
 
-### 📦 Productos
+###  Productos
 | Método | Endpoint | Descripción |
 | :--- | :--- | :--- |
 | **GET** | `/api/Productos` | Obtiene todos los productos (`ProductoResponseDto`) |
@@ -87,7 +87,7 @@ Respuestas estables con tiempos de respuesta de milisegundos gracias a la arquit
 | **PUT** | `/api/Productos/{id}` | Actualiza un producto existente (`ActualizarProductoDto`) |
 | **DELETE**| `/api/Productos/{id}` | Elimina un producto |
 
-### 🏷️ Categorías
+###  Categorías
 | Método | Endpoint | Descripción |
 | :--- | :--- | :--- |
 | **GET** | `/api/Categoria` | Obtiene todas las categorías |
@@ -96,7 +96,7 @@ Respuestas estables con tiempos de respuesta de milisegundos gracias a la arquit
 | **PUT** | `/api/Categoria/{id}` | Actualiza una categoría (`ActualizarCategoriaDto`) |
 | **DELETE**| `/api/Categoria/{id}` | Elimina una categoría |
 
-### 👤 Clientes
+### Clientes
 | Método | Endpoint | Descripción |
 | :--- | :--- | :--- |
 | **GET** | `/api/Cliente` | Lista de clientes registrados |
@@ -107,7 +107,7 @@ Respuestas estables con tiempos de respuesta de milisegundos gracias a la arquit
 
 ---
 
-## 🚀 Instalación y Puesta en Marcha
+##  Instalación y Puesta en Marcha
 
 ### Prerrequisitos
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
@@ -135,7 +135,7 @@ Actualiza tu cadena de conexión y credenciales de IA:
 }
 ```
 
-> 🔒 **Buenas prácticas:** Para desarrollo local puedes usar .NET User Secrets:
+>  **Buenas prácticas:** Para desarrollo local puedes usar .NET User Secrets:
 > ```bash
 > dotnet user-secrets set "OpenAI:ApiKey" "tu_api_key"
 > ```
@@ -156,7 +156,7 @@ La API estará disponible en:
 
 ---
 
-## 🧪 Ejemplo de Consulta al Asistente IA
+## Ejemplo de Consulta al Asistente IA
 
 **Petición:**
 ```http
