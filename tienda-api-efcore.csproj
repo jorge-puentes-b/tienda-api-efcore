@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>tienda_api_efcore</RootNamespace>
     <DefaultItemExcludes>$(DefaultItemExcludes);TiendaApi.Tests\**</DefaultItemExcludes>
+    <UserSecretsId>0123aa96-730e-4d63-bc46-eb2f0619aaf0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

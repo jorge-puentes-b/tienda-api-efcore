@@ -64,26 +64,73 @@ public class ProductosControllerTests
         // Assert
         result.Result.Should().BeOfType<NotFoundResult>();
     }
-    [Theory]
-    [InlineData(null)]
-    public async Task CreateProducto_ReturnsBadRequest_WhenProductoIsNull(ProductoRequestDto producto)
+    [Fact]
+    public async Task Create_ReturnsCreatedAtAction_WhenProductIsCreated()
     {
+        // Arrange
+        var createDto = new CrearProductosDto { Nombre = "Producto 1", Descripcion = "Desc", Precio = 10, Stock = 5, CategoriaId = 1 };
+        var createdProduct = new ProductoResponseDto { Id = 1, Nombre = "Producto 1", Precio = 10 };
+        _productoServiceMock.Setup(s => s.CreateAsync(createDto)).ReturnsAsync(createdProduct);
+
         // Act
-        var result = await _controller.CreateProducto(producto);
+        var result = await _controller.Create(createDto);
 
         // Assert
-        result.Result.Should().BeOfType<BadRequestObjectResult>();
+        var createdAtActionResult = result.Result.Should().BeOfType<CreatedAtActionResult>().Subject;
+        createdAtActionResult.Value.Should().BeEquivalentTo(createdProduct);
     }
 
-    [Theory]
-    [InlineData(0)]
-    [InlineData(-1)]
-    public async Task UpdateProducto_ReturnsBadRequest_WhenProductoIdIsInvalid(int productoId)
+    [Fact]
+    public async Task Update_ReturnsNoContent_WhenProductIsUpdated()
     {
+        // Arrange
+        var updateDto = new ActualizarProductoDto { Id = 1, Nombre = "Producto 1", Descripcion = "Desc", Precio = 10, Stock = 5, CategoriaId = 1 };
+        _productoServiceMock.Setup(s => s.UpdateAsync(1, updateDto)).ReturnsAsync(true);
+
         // Act
-        var result = await _controller.UpdateProducto(productoId, new ProductoRequestDto());
+        var result = await _controller.Update(1, updateDto);
 
         // Assert
-        result.Result.Should().BeOfType<BadRequestObjectResult>();
+        result.Should().BeOfType<NoContentResult>();
+    }
+
+    [Fact]
+    public async Task Update_ReturnsNotFound_WhenProductDoesNotExist()
+    {
+        // Arrange
+        var updateDto = new ActualizarProductoDto { Id = 1, Nombre = "Producto 1", Descripcion = "Desc", Precio = 10, Stock = 5, CategoriaId = 1 };
+        _productoServiceMock.Setup(s => s.UpdateAsync(1, updateDto)).ReturnsAsync(false);
+
+        // Act
+        var result = await _controller.Update(1, updateDto);
+
+        // Assert
+        result.Should().BeOfType<NotFoundResult>();
+    }
+
+    [Fact]
+    public async Task Delete_ReturnsNoContent_WhenProductIsDeleted()
+    {
+        // Arrange
+        _productoServiceMock.Setup(s => s.DeleteAsync(1)).ReturnsAsync(true);
+
+        // Act
+        var result = await _controller.Delete(1);
+
+        // Assert
+        result.Should().BeOfType<NoContentResult>();
+    }
+
+    [Fact]
+    public async Task Delete_ReturnsNotFound_WhenProductDoesNotExist()
+    {
+        // Arrange
+        _productoServiceMock.Setup(s => s.DeleteAsync(1)).ReturnsAsync(false);
+
+        // Act
+        var result = await _controller.Delete(1);
+
+        // Assert
+        result.Should().BeOfType<NotFoundResult>();
     }
 }
